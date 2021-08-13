@@ -41,6 +41,8 @@ Now in your Dart code, you can use:
           'https://www.mindinventory.com'
           '\nsales@mindinventory.com\n'
           'India: +91-951-229-3490',
+      textStyle: kTextStyle,
+      linkStyle: kLinkStyle,
       readMoreLessModel: ReadMoreLessModel(
         trimLines: 2,
         readMoreLessStyle: kReadMoreLessStyle,
@@ -48,9 +50,6 @@ Now in your Dart code, you can use:
       onReadMoreLessTap: () {
         showSnackBar('Read more/less');
       },
-      textStyle: kTextStyle,
-      linkStyle: kLinkStyle,
-      highlightTermsStyle: kHighlightTermsStyle,
       onWebLinkTap: (web) {
         showSnackBar(web);
       },
@@ -61,6 +60,7 @@ Now in your Dart code, you can use:
         showSnackBar(email);
       },
       highlightTerms: ['Mindinventory'],
+      highlightTermsStyle: kHighlightTermsStyle,
       onTermTap: (text) {
         showSnackBar(text);
       },
