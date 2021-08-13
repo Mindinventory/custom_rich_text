@@ -14,6 +14,7 @@ CustomRichText is a package that allows highlighting and link reference to the t
 * Allow text styling as per requirement
 
 ## Note
+* If you want to highlight  any specific type of text then need to add the following on tap method.
 * If any link or email consists the provided sub-string then it will ignore that and will be highlighted as web link or email.
 
 ## Getting Started
