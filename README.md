@@ -4,7 +4,7 @@
 CustomRichText is a package that allows highlighting and link reference to the text.
 
 
-![Image Plugin](https://github.com/Mindinventory/custom_rich_text/blob/master/assets/custom_rich_text.gif)
+![Image Plugin](https://github.com/routsrv/custom_rich_text/blob/master/assets/custom_rich_text.gif)
 
 ## Key Features
 
