@@ -8,10 +8,13 @@ CustomRichText is a package that allows highlighting and link reference to the t
 
 ## Key Features
 
-* Highlights email, phone number, web link, custom RegExp, certain subStrings
+* Highlights email, phone number, web link, custom RegExp, certain sub-strings
 * Provides a call back on each highlighted string
 * Option for read more, read less and a call back for both
 * Allow text styling as per requirement
+
+## Note
+* If any link or email consists the provided sub-string then it will ignore that and will be highlighted as web link or email.
 
 ## Getting Started
 
