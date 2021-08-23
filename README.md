@@ -41,6 +41,8 @@ Now in your Dart code, you can use:
           'https://www.mindinventory.com'
           '\nsales@mindinventory.com\n'
           'India: +91-951-229-3490',
+      textStyle: kTextStyle,
+      linkStyle: kLinkStyle,
       readMoreLessModel: ReadMoreLessModel(
         trimLines: 2,
         readMoreLessStyle: kReadMoreLessStyle,
@@ -48,9 +50,6 @@ Now in your Dart code, you can use:
       onReadMoreLessTap: () {
         showSnackBar('Read more/less');
       },
-      textStyle: kTextStyle,
-      linkStyle: kLinkStyle,
-      highlightTermsStyle: kHighlightTermsStyle,
       onWebLinkTap: (web) {
         showSnackBar(web);
       },
@@ -61,6 +60,7 @@ Now in your Dart code, you can use:
         showSnackBar(email);
       },
       highlightTerms: ['Mindinventory'],
+      highlightTermsStyle: kHighlightTermsStyle,
       onTermTap: (text) {
         showSnackBar(text);
       },
@@ -78,7 +78,7 @@ It would be great for us if the reporter can share the below things to understan
 - Screenshot/video with steps to reproduce the issue
 
 # LICENSE!
-Custom RichText is [MIT-licensed](https://github.com/Mindinventory/custom_rich_text/blob/master/LICENSE "MIT-licensed").
+Custom RichText is [MIT-licensed](https://github.com/routsrv/custom_rich_text/blob/master/LICENSE "MIT-licensed").
 
 # Let us know!
 We’d be really happy if you send us links to your projects where you use our component. Just send an email to sales@mindinventory.com And do let us know if you have any questions or suggestion regarding our work.
