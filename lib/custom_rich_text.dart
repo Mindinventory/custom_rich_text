@@ -2,6 +2,7 @@ library custom_rich_text;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/rendering.dart';
 
 import 'helper_class.dart';
 import 'models/read_more_less_model.dart';
@@ -81,6 +82,7 @@ class _CustomRichTextState extends State<CustomRichText> {
   }
 
   List<TextSpan> _buildTextSpans(String fullText, {TextSpan? link}) {
+    /// Will create separate text span for each
     List<TextSpan> textSpans = findMatches(
             fullText, _getTypes(), widget.humanize!,
             regExp: widget.customRegExp)
@@ -106,7 +108,7 @@ class _CustomRichTextState extends State<CustomRichText> {
 
     final List<String> termList = widget.highlightTerms ?? [];
 
-    // remove empty search terms ('') because they cause infinite loops
+    /// Remove empty search terms ('') because they cause infinite loops
     final List<String> termListLC = termList
         .where((s) => s.isNotEmpty)
         .map((s) => widget.caseSensitive ? s : s.toLowerCase())
@@ -121,7 +123,7 @@ class _CustomRichTextState extends State<CustomRichText> {
           text: text.substring(start, end),
           style: widget.textStyle ?? kTextStyle));
 
-      // find index of term that's closest to current idx position
+      /// Find index of term that's closest to current idx position
       int iNearest = -1;
       int idxNearest = int64MaxValue;
       for (int i = 0; i < termListLC.length; i++) {
@@ -136,15 +138,15 @@ class _CustomRichTextState extends State<CustomRichText> {
       }
 
       if (iNearest >= 0) {
-        // found one of the terms at or after idx
-        // iNearest is the index of the closest term at or after idx that matches
+        /// Found one of the terms at or after idx
+        /// iNearest is the index of the closest term at or after idx that matches
         if (start < idxNearest) {
-          // we found a match BUT FIRST output non-highlighted text that comes BEFORE this match
+          /// We found a match BUT FIRST output non-highlighted text that comes BEFORE this match
           nonHighlightAdd(idxNearest);
           start = idxNearest;
         }
 
-        // output the match using desired highlighting
+        /// Output the match using desired highlighting
         int termLen = termListLC[iNearest].length;
         final recognizer = TapGestureRecognizer();
         if (widget.onTermTap != null)
@@ -156,10 +158,10 @@ class _CustomRichTextState extends State<CustomRichText> {
             recognizer: recognizer));
         start = idx = idxNearest + termLen;
       } else {
-        // if none match at all (ever!)
-        // --or--
-        // one or more matches but during this iteration there are NO MORE matches
-        // in either case, add reminder of text as non-highlighted text
+        /// If none match at all (ever!)
+        /// --or--
+        /// One or more matches but during this iteration there are NO MORE matches
+        /// in either case, add reminder of text as non-highlighted text
         nonHighlightAdd(textLC.length);
         break;
       }
@@ -182,27 +184,32 @@ class _CustomRichTextState extends State<CustomRichText> {
         builder: (BuildContext context, BoxConstraints constraints) {
           assert(constraints.hasBoundedWidth);
           final double maxWidth = constraints.maxWidth;
-          // Create a TextSpan with data
+
+          /// Create a TextSpan with data
           final text = TextSpan(
             text: widget.text,
           );
-          // Layout and measure link
+
+          /// Layout and measure link
           TextPainter textPainter = TextPainter(
             text: link,
             textDirection: TextDirection.ltr,
-            //better to pass this from master widget if ltr and rtl both supported
+
+            /// Better to pass this from master widget if ltr and rtl both supported
             maxLines: widget.readMoreLessModel!.trimLines,
             ellipsis: '...',
           );
           textPainter.layout(
               minWidth: constraints.minWidth, maxWidth: maxWidth);
           final linkSize = textPainter.size;
-          // Layout and measure text
+
+          /// Layout and measure text
           textPainter.text = text;
           textPainter.layout(
               minWidth: constraints.minWidth, maxWidth: maxWidth);
           final textSize = textPainter.size;
-          // Get the endIndex of data
+
+          /// Get the endIndex of data
           int endIndex;
           final pos = textPainter.getPositionForOffset(Offset(
             textSize.width - linkSize.width,

@@ -5,11 +5,7 @@ RegExp _emailRegExp = RegExp(
     r"[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*");
 RegExp _linksRegExp = RegExp(
     r"(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})");
-// RegExp _phoneRegExp = RegExp(r"[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*");
 RegExp _phoneRegExp = RegExp(r'([+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{4}');
-
-//for the number format +91-951-229-3490
-//  RegExp _phoneRegExp = RegExp(r'((\+)[(]{0,1}[0-9]{1,4}[)]?[-\s]+(00)?\d{1,3})[-\s]+(\d{1,3})[-\s]+(\d{4,10})');
 
 typedef StringArgumentCallback = void Function(String);
 typedef VoidArgumentCallback = void Function();
@@ -18,15 +14,14 @@ final int int64MaxValue = double.maxFinite.toInt();
 
 enum MatchType { phone, email, link, customRegExp, none }
 
-
+/// Default textStyles
 TextStyle kTextStyle = TextStyle(fontSize: 16, color: Colors.black);
 TextStyle kLinkTextStyle = TextStyle(fontSize: 16, color: Colors.blue);
 TextStyle kGivenStringTextStyle =
     TextStyle(fontSize: 16, color: Colors.lightGreen);
 
-String kReadMore = '... read more';
+String kReadMore = ' read more';
 String kReadLess = ' read less';
-
 
 class _MatchedString {
   final MatchType type;
@@ -46,6 +41,8 @@ List<_MatchedString> findMatches(String text, String types, bool humanize,
     _MatchedString(type: MatchType.none, text: text)
   ];
 
+  /// If there is phone number in the text it will be added
+  /// to the highlighted string list
   if (types.contains('phone')) {
     List<_MatchedString> newMatched = [];
     for (_MatchedString matchedBefore in matched) {
@@ -58,6 +55,8 @@ List<_MatchedString> findMatches(String text, String types, bool humanize,
     matched = newMatched;
   }
 
+  /// If there is email in the text it will be added
+  /// to the highlighted string list
   if (types.contains('email')) {
     List<_MatchedString> newMatched = [];
     for (_MatchedString matchedBefore in matched) {
@@ -70,6 +69,8 @@ List<_MatchedString> findMatches(String text, String types, bool humanize,
     matched = newMatched;
   }
 
+  /// If there is web link in the text it will be added
+  /// to the highlighted string list
   if (types.contains('web')) {
     List<_MatchedString> newMatched = [];
     for (_MatchedString matchedBefore in matched) {
@@ -95,11 +96,14 @@ List<_MatchedString> findMatches(String text, String types, bool humanize,
     matched = newMatched;
   }
 
+  /// If there is any custom regExp provided then it will add the matching
+  /// string to the highlighted string list
   if (types.contains('regExp')) {
     List<_MatchedString> newMatched = [];
     for (_MatchedString matchedBefore in matched) {
       if (matchedBefore.type == MatchType.none) {
-        newMatched.addAll(_findLinksByType(matchedBefore.text, MatchType.customRegExp,
+        newMatched.addAll(_findLinksByType(
+            matchedBefore.text, MatchType.customRegExp,
             regExp: regExp));
       } else
         newMatched.add(matchedBefore);

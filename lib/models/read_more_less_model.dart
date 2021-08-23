@@ -13,10 +13,10 @@ class ReadMoreLessModel {
       String? readMoreText,
       String? readLessText,
       TextStyle? readMoreLessStyle}) {
-    this.trimLines = 2;
+    this.trimLines = trimLines ?? 2;
     this.readMoreText = readMoreText ?? kReadMore;
     this.readLessText = readLessText ?? kReadLess;
     this.readMoreLessStyle =
-        readMoreLessStyle ?? TextStyle(fontSize: 16, color: Colors.pink);
+        readMoreLessStyle ?? TextStyle(fontSize: 14, color: Colors.pink);
   }
 }
