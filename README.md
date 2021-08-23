@@ -4,7 +4,7 @@
 CustomRichText is a package that allows highlighting and link reference to the text.
 
 
-![Image Plugin](https://github.com/routsrv/custom_rich_text/blob/master/assets/custom_rich_text.gif)
+![Image Plugin](https://github.com/Mindinventory/custom_rich_text/blob/master/assets/custom_rich_text.gif)
 
 ## Key Features
 
@@ -33,36 +33,35 @@ Now in your Dart code, you can use:
 
 ### Example
     CustomRichText(
-      text:
-          'MindInventory works with Enterprises, Startup, and Agencies since 2011'
-          ' providing web, mobile app development, enterprise mobility solutions & '
-          'DevOps services.\n'
-          '\nContact Us:\n'
-          'https://www.mindinventory.com'
-          '\nsales@mindinventory.com\n'
-          'India: +91-951-229-3490',
-      textStyle: kTextStyle,
-      linkStyle: kLinkStyle,
+      text: 'MindInventory is first-rate choice of the '
+          'clients worldwide. With sheer customer satisfaction in mind, we are profoundly '
+          'dedicated to developing highly intriguing apps that strictly meet the business '
+          'requirements and catering a wide spectrum of projects. Kickstart Your Digital '
+          'Journey Today and get all your queries and concerns answered by our business '
+          'development team. Our email address is sales@mindinventory.com, our website '
+          'https://www.mindinventory.com and our Contact number is +91-951-229-3490',
+      caseSensitive: false,
       readMoreLessModel: ReadMoreLessModel(
-        trimLines: 2,
+        trimLines: 3,
+        readMoreText: ' read more',
+        readLessText: ' read less',
         readMoreLessStyle: kReadMoreLessStyle,
       ),
-      onReadMoreLessTap: () {
-        showSnackBar('Read more/less');
+      textStyle: kTextStyle,
+      linkStyle: kLinkStyle,
+      highlightTermsStyle: kLinkStyle,
+      onWebLinkTap: (web) async {
+        await launch(web);
       },
-      onWebLinkTap: (web) {
-        showSnackBar(web);
+      onPhoneTap: (phone) async {
+        await launch('tel:$phone');
       },
-      onPhoneTap: (phone) {
-        showSnackBar(phone);
+      onEmailTap: (email) async {
+        await launch('mailto:$email');
       },
-      onEmailTap: (email) {
-        showSnackBar(email);
-      },
-      highlightTerms: ['Mindinventory'],
-      highlightTermsStyle: kHighlightTermsStyle,
-      onTermTap: (text) {
-        showSnackBar(text);
+      highlightTerms: [kMindinventory],
+      onTermTap: (text) async {
+        await launch('https://www.mindinventory.com/');
       },
     ),
 
@@ -78,7 +77,7 @@ It would be great for us if the reporter can share the below things to understan
 - Screenshot/video with steps to reproduce the issue
 
 # LICENSE!
-Custom RichText is [MIT-licensed](https://github.com/routsrv/custom_rich_text/blob/master/LICENSE "MIT-licensed").
+Custom RichText is [MIT-licensed](https://github.com/Mindinventory/custom_rich_text/blob/master/LICENSE "MIT-licensed").
 
 # Let us know!
 We’d be really happy if you send us links to your projects where you use our component. Just send an email to sales@mindinventory.com And do let us know if you have any questions or suggestion regarding our work.
