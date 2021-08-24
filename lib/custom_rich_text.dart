@@ -48,11 +48,13 @@ class CustomRichText extends StatefulWidget {
 class _CustomRichTextState extends State<CustomRichText> {
   bool _readMore = true;
 
+  /// This will set the boolean value to find whether it's read more or read less
   void _onReadMoreLessTap() {
     if (widget.onReadMoreLessTap != null) widget.onReadMoreLessTap!();
     setState(() => _readMore = !_readMore);
   }
 
+  /// This method will provide a call back on each tap
   _onLinkTap(String link, MatchType type) {
     switch (type) {
       case MatchType.phone:
@@ -72,6 +74,8 @@ class _CustomRichTextState extends State<CustomRichText> {
     }
   }
 
+  /// Checking for onTap method of each type
+  /// If found any onTap then adding text accordingly to filter the types
   String _getTypes() {
     String types = '';
     if (widget.onWebLinkTap != null) types += 'web';
@@ -81,8 +85,8 @@ class _CustomRichTextState extends State<CustomRichText> {
     return types;
   }
 
+  /// Creating separate text span for each
   List<TextSpan> _buildTextSpans(String fullText, {TextSpan? link}) {
-    /// Will create separate text span for each
     List<TextSpan> textSpans = findMatches(
             fullText, _getTypes(), widget.humanize!,
             regExp: widget.customRegExp)
@@ -103,6 +107,8 @@ class _CustomRichTextState extends State<CustomRichText> {
     return textSpans;
   }
 
+  /// This method will build the textSpan for the
+  /// string provided by the user to highlight
   TextSpan termTextSpan(String text) {
     final String textLC = widget.caseSensitive ? text : text.toLowerCase();
 
