@@ -1,10 +1,10 @@
 name: custom_rich_text
 description: A custom rich text package that allow highlights and link reference to text.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/Mindinventory/custom_rich_text/tree/master
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=3.10.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:

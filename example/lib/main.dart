@@ -113,17 +113,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       linkStyle: kLinkStyle,
                       highlightTermsStyle: kLinkStyle,
                       onWebLinkTap: (web) async {
-                        await launch(web);
+                        await launchUrl(Uri.parse(web));
                       },
                       onPhoneTap: (phone) async {
-                        await launch('tel:$phone');
+                        await launchUrl(Uri.parse('tel:$phone'));
                       },
                       onEmailTap: (email) async {
-                        await launch('mailto:$email');
+                        await launchUrl(Uri.parse('mailto:$email'));
                       },
                       highlightTerms: [kMindinventory],
                       onTermTap: (text) async {
-                        await launch('https://www.mindinventory.com/');
+                        await launchUrl(Uri.parse('https://www.mindinventory.com/'));
                       },
                     ),
                   ],
